@@ -4,36 +4,57 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Tecbotlimelight;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
+public class LimelightSeek extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem subsystem) {
+  Drivetrain chassis;
+  Tecbotlimelight limelight;
+
+  
+  public LimelightSeek(){
+
+    chassis = Robot.getRobotContainer().getChassis();
+    limelight = Robot.getRobotContainer().getTecbotlimelight();
+    addRequirements(chassis, limelight);
+  }
+  /* public Tecbotlimelight(Tecbotlimelight limelight) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
-  }
+  }*/
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double y = 0;
+    double x;
+    x = (limelight.getX())/27;
+    chassis.driveTank(y, x);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    chassis.driveTank(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override

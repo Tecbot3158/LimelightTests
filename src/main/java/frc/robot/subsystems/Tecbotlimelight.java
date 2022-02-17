@@ -17,6 +17,11 @@ public class Tecbotlimelight extends SubsystemBase {
 
     }
 
+    public double getX(){
+        tx = table.getEntry("tx");
+        return tx.getDouble(0);
+    }
+
     public void periodic() {
 
         tx = table.getEntry("tx");

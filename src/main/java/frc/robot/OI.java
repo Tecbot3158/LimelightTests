@@ -1,7 +1,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.LimelightSeek;
 import frc.robot.resources.TecbotController;
+import frc.robot.resources.TecbotController.ButtonType;
 import frc.robot.resources.TecbotController.TypeOfController;
 
 public class OI {
@@ -19,7 +21,7 @@ public class OI {
     }
 
     public void configureButtonBindings() {
-
+        pilot.getButton(ButtonType.X).whileHeld(new LimelightSeek());
     }
 
 }
