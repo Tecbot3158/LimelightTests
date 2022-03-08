@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Tecbotlimelight;
@@ -46,6 +45,8 @@ public class LimelightSeek extends CommandBase {
   public void execute() {
     double y = 0;
     double x;
+    
+    y = Math.abs((((limelight.getArea())/85)-1)*0.8);
     x = (limelight.getX())/27;
     chassis.driveTank(y, x);
   }
